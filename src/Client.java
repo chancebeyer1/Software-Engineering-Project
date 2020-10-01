@@ -25,7 +25,7 @@ public class Client {
 	/**
 	 * provides a peer-to-peer connection to the server
 	 */
-	NetworkAccess networkaccess;
+	private NetworkAccess networkaccess;
   	
 	/**
 	 * Creates a peer-to-peer connection to the server

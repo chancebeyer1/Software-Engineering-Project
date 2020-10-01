@@ -1,7 +1,5 @@
 package BasicClientServer;
 
-
-
 import java.io.IOException;
 import java.net.Socket;
 
@@ -11,7 +9,7 @@ public class ClientHandler extends Thread {
 	/**
 	 * provides a peer-to-peer connection to the client
 	 */
-	NetworkAccess networkaccess;
+	private NetworkAccess networkaccess;
 	
 	/**
 	 * controls the run thread
@@ -67,7 +65,21 @@ public class ClientHandler extends Thread {
 		return name;
 	}
 
+	public void Stop()
+	{
+		go = false;
+	}
 
+	public int getID()
+	{
+		return id;
+	}
+	
+	public Server getServer()
+	{
+		return server;
+	}
+	
 	// -- similar to a main() function in that it is the entry point of
 	//    the thread
 	public void run () {
@@ -79,8 +91,7 @@ public class ClientHandler extends Thread {
 				//    on the end due to how BufferedReader readLine() works.
 				//    The client adds it to the user's string but the BufferedReader
 				//    readLine() call strips it off
-				String txt = networkaccess.readString();
-				System.out.println("SERVER receive: " + txt);
+				String cmd = networkaccess.readString();
 				
 				// -- if it is not the termination message, send it back adding the
 				//    required (by readLine) "\n"
@@ -95,26 +106,8 @@ public class ClientHandler extends Thread {
 				//         server parses it to "LOGIN", "<username>", "<password>" and performs login function
 				//         server responds with "SUCCESS\n"
 				//    this is where all the server side Use Cases will be handled
-				//    you may want to create a separate class called e.g. "CommandProcessor" or "CommunicationProtocol"
-				if (txt.equals("disconnect")) {
-					
-					// -- no response to the client is necessary
-					networkaccess.close();
-					server.removeID(id);
-					go = false; // terminate the thread
-				}
-				else if (txt.equals("hello")) {
-						
-					// -- client is expecting a response
-					networkaccess.sendString("world!" + "\n", false);
-					
-				}
-				else {
-					
-					System.out.println("unrecognized command >>" + txt + "<<");
-					networkaccess.sendString(txt + "\n", false);
-					
-				}
+				
+				CommandProtocol.processCommand(cmd, networkaccess, this);
 			} 
 			catch (IOException e) {
 				
