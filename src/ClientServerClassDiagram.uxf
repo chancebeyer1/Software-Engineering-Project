@@ -4,12 +4,13 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
-      <y>0</y>
+      <x>850</x>
+      <y>280</y>
       <w>310</w>
       <h>210</h>
     </coordinates>
-    <panel_attributes>Server
+    <panel_attributes>type=actclass
+Server
 --
 _-PORT: int = 8000_
 -running: boolean
@@ -19,32 +20,16 @@ _-PORT: int = 8000_
 +Server()
 -listen(): void
 +peerconnection (Socket socket): void
--removeID(int id): void
++removeID(int id): void
 --
-Provides access to the server 
-capabilities</panel_attributes>
+Listens for client connection requests</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>870</x>
-      <y>200</y>
-      <w>90</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
-
-&lt;&lt;private&gt;&gt;
-
-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>700</x>
-      <y>290</y>
+      <x>810</x>
+      <y>570</y>
       <w>380</w>
       <h>240</h>
     </coordinates>
@@ -71,8 +56,8 @@ and the server
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>550</x>
-      <y>330</y>
+      <x>660</x>
+      <y>610</y>
       <w>170</w>
       <h>40</h>
     </coordinates>
@@ -83,8 +68,8 @@ and the server
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>290</y>
+      <x>380</x>
+      <y>570</y>
       <w>290</w>
       <h>270</h>
     </coordinates>
@@ -111,8 +96,8 @@ wrappers</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>150</x>
-      <y>230</y>
+      <x>260</x>
+      <y>510</y>
       <w>140</w>
       <h>130</h>
     </coordinates>
@@ -123,8 +108,8 @@ wrappers</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>110</y>
+      <x>170</x>
+      <y>390</y>
       <w>210</w>
       <h>130</h>
     </coordinates>
@@ -142,8 +127,8 @@ server</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>430</x>
-      <y>50</y>
+      <x>540</x>
+      <y>330</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
@@ -156,8 +141,8 @@ Package::java.net
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>580</x>
-      <y>50</y>
+      <x>690</x>
+      <y>330</y>
       <w>180</w>
       <h>60</h>
     </coordinates>
@@ -171,8 +156,8 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>510</x>
-      <y>210</y>
+      <x>620</x>
+      <y>490</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
@@ -184,8 +169,8 @@ Package::java.lang
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>220</y>
+      <x>770</x>
+      <y>500</y>
       <w>140</w>
       <h>90</h>
     </coordinates>
@@ -195,8 +180,8 @@ Package::java.lang
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>500</x>
-      <y>590</y>
+      <x>610</x>
+      <y>870</y>
       <w>560</w>
       <h>100</h>
     </coordinates>
@@ -212,8 +197,8 @@ Process all incoming commands to the server</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>810</x>
-      <y>520</y>
+      <x>920</x>
+      <y>800</y>
       <w>140</w>
       <h>90</h>
     </coordinates>
@@ -225,18 +210,18 @@ Process all incoming commands to the server</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>20</x>
-      <y>750</y>
-      <w>1070</w>
+      <y>1060</y>
+      <w>1300</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;1050.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;1280.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>70</x>
-      <y>770</y>
+      <x>40</x>
+      <y>1440</y>
       <w>210</w>
       <h>130</h>
     </coordinates>
@@ -254,20 +239,20 @@ server</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>160</x>
-      <y>890</y>
+      <x>130</x>
+      <y>1560</y>
       <w>90</w>
-      <h>200</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
 &lt;&lt;private&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>30</x>
-      <y>1070</y>
+      <x>0</x>
+      <y>1640</y>
       <w>290</w>
       <h>270</h>
     </coordinates>
@@ -294,8 +279,8 @@ wrappers</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>500</x>
-      <y>1310</y>
+      <x>610</x>
+      <y>1590</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
@@ -307,12 +292,13 @@ Package::java.lang
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>730</x>
-      <y>1100</y>
+      <x>840</x>
+      <y>1380</y>
       <w>310</w>
       <h>210</h>
     </coordinates>
-    <panel_attributes>Server
+    <panel_attributes>type=actclass
+Server
 --
 _-PORT: int = 8000_
 -running: boolean
@@ -322,7 +308,7 @@ _-PORT: int = 8000_
 +Server()
 -listen(): void
 +peerconnection (Socket socket): void
--removeID(int id): void
++removeID(int id): void
 --
 Provides access to the server 
 capabilities</panel_attributes>
@@ -331,23 +317,8 @@ capabilities</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>860</x>
-      <y>1300</y>
-      <w>90</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
-
-&lt;&lt;private&gt;&gt;
-
-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>650</x>
-      <y>1320</y>
+      <x>760</x>
+      <y>1600</y>
       <w>140</w>
       <h>90</h>
     </coordinates>
@@ -357,8 +328,8 @@ capabilities</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>610</x>
-      <y>1430</y>
+      <x>720</x>
+      <y>1710</y>
       <w>100</w>
       <h>40</h>
     </coordinates>
@@ -369,8 +340,8 @@ capabilities</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>690</x>
-      <y>1390</y>
+      <x>800</x>
+      <y>1670</y>
       <w>380</w>
       <h>240</h>
     </coordinates>
@@ -388,7 +359,7 @@ ClientHandler
 +getname (): String
 +run (): void
 --
-Handles the peer-to-peer
+Provides the peer-to-peer
 communication between a client
 and the server
 </panel_attributes>
@@ -397,8 +368,8 @@ and the server
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>1620</y>
+      <x>910</x>
+      <y>1900</y>
       <w>140</w>
       <h>80</h>
     </coordinates>
@@ -409,8 +380,8 @@ and the server
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>1680</y>
+      <x>600</x>
+      <y>1960</y>
       <w>560</w>
       <h>100</h>
     </coordinates>
@@ -426,8 +397,8 @@ Process all incoming commands to the server</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>330</x>
-      <y>1390</y>
+      <x>440</x>
+      <y>1670</y>
       <w>290</w>
       <h>270</h>
     </coordinates>
@@ -454,8 +425,8 @@ wrappers</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>1130</y>
+      <x>680</x>
+      <y>1410</y>
       <w>180</w>
       <h>60</h>
     </coordinates>
@@ -469,8 +440,8 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>1130</y>
+      <x>530</x>
+      <y>1410</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
@@ -483,12 +454,14 @@ Package::java.net
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>430</x>
-      <y>800</y>
+      <x>410</x>
+      <y>1130</y>
       <w>280</w>
-      <h>110</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>halign=left
+_Class Diagram_
+
 Alternative showing Client and Server
 as two separate Class Diagrams
 
@@ -501,16 +474,641 @@ class
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>20</x>
-      <y>20</y>
-      <w>340</w>
+      <x>430</x>
+      <y>40</y>
+      <w>190</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>halign=left
-Class Diagram showing Client and Server
+_Class Diagram_
+Show Client and Server
 together in a single diagram
 
 </panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1060</x>
+      <y>180</y>
+      <w>220</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>The server must run in its
+own thread because the 
+ServerSocket.accept() method 
+is blocking</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1120</x>
+      <y>240</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;40.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>1200</y>
+      <w>230</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>ServerGUI
+--
+
+--
++main(String args[]): void
+--
+Provides administrator interface
+and starts the server</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>1100</y>
+      <w>160</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>JFrame
+Package::javax.swing</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>980</x>
+      <y>1140</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>980</x>
+      <y>1310</y>
+      <w>80</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;starts&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1140</x>
+      <y>1280</y>
+      <w>220</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>The server must run in its
+own thread because the 
+ServerSocket.accept() method 
+is blocking</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1130</x>
+      <y>1340</y>
+      <w>50</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=.
+</panel_attributes>
+    <additional_attributes>10.0;40.0;30.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>840</x>
+      <y>0</y>
+      <w>160</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>JFrame
+Package::javax.swing</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>100</y>
+      <w>230</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>ServerGUI
+--
+
+--
++main(String args[]): void
+--
+Provides administrator interface
+and starts the server</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>910</x>
+      <y>40</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>910</x>
+      <y>210</y>
+      <w>80</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;starts&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>200</x>
+      <y>100</y>
+      <w>160</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>JFrame
+Package::javax.swing</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>140</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>190</y>
+      <w>200</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>ClientGUI
+--
+
+--
++main(String args[]): void
+--
+Provides user access
+to client functionality</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>300</y>
+      <w>90</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+
+&lt;&lt;private&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>1150</y>
+      <w>160</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>JFrame
+Package::javax.swing</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>140</x>
+      <y>1190</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>1240</y>
+      <w>200</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>ClientGUI
+--
+
+--
++main(String args[]): void
+--
+Provides user access
+to client functionality</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>130</x>
+      <y>1350</y>
+      <w>90</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+
+&lt;&lt;private&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>310</x>
+      <y>1500</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Note..</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>1560</y>
+      <w>170</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=.
+  Same class, 
+  separate objects</panel_attributes>
+    <additional_attributes>10.0;80.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>410</x>
+      <y>1560</y>
+      <w>80</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=.
+</panel_attributes>
+    <additional_attributes>60.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>60</x>
+      <y>910</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>_Client:theclient_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>1000</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>_NetworkAccess:clientnetwork_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>100</x>
+      <y>930</y>
+      <w>90</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+
+&lt;&lt;private&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>910</y>
+      <w>220</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>_ClientHandler:theclienthandler_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>930</y>
+      <w>90</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+
+&lt;&lt;private&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>1000</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>_NetworkAccess:servernetwork_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>850</y>
+      <w>500</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>halign=left
+_Object Diagram_
+
+Usage of instances of the NetworkAccess class
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>2020</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>_Client:theclient_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>2110</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>_NetworkAccess:clientnetwork_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>2040</y>
+      <w>90</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+
+&lt;&lt;private&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>250</x>
+      <y>2020</y>
+      <w>220</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>_ClientHandler:theclienthandler_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>340</x>
+      <y>2040</y>
+      <w>90</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+
+&lt;&lt;private&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>250</x>
+      <y>2110</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>_NetworkAccess:servernetwork_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>1960</y>
+      <w>500</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>halign=left
+_Object Diagram_
+
+Usage of instances of the NetworkAccess class
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>20</x>
+      <y>1070</y>
+      <w>1300</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;1280.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>990</x>
+      <y>480</y>
+      <w>110</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;constructs&gt;&gt;
+&lt;&lt;starts&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>540</x>
+      <y>390</y>
+      <w>160</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Runnable
+&lt;&lt;interface&gt;&gt;
+Package::java.lang
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>390</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+
+</panel_attributes>
+    <additional_attributes>70.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>770</x>
+      <y>390</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-()
+</panel_attributes>
+    <additional_attributes>80.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1150</x>
+      <y>420</y>
+      <w>240</w>
+      <h>520</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;access connection list&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;60.0;500.0;20.0;500.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>1480</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-()
+</panel_attributes>
+    <additional_attributes>80.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>1480</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+
+</panel_attributes>
+    <additional_attributes>70.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>1480</y>
+      <w>160</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Runnable
+&lt;&lt;interface&gt;&gt;
+Package::java.lang
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1140</x>
+      <y>1510</y>
+      <w>240</w>
+      <h>520</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;access connection list&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;60.0;500.0;20.0;500.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>970</x>
+      <y>1580</y>
+      <w>110</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;constructs&gt;&gt;
+&lt;&lt;starts&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
