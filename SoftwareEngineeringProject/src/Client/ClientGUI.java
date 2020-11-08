@@ -34,13 +34,15 @@ public class ClientGUI extends JFrame {
 
 	private Client client;
 	
-    private int WIDTH = 350;
-    private int HEIGHT = 500;
+    private int WIDTH = 700;
+    private int HEIGHT = 1000;
 		
 	private ControlPanelInner controlPanel;
 	
 	public ClientGUI ()
 	{
+		
+		
 
 		setTitle("Client GI");
 				
@@ -80,6 +82,7 @@ public class ClientGUI extends JFrame {
         private JButton disconnectbutton = new JButton("Disconnect");
         
         private JTextField messagefield = new JTextField(25);        
+        private JTextField connectfield = new JTextField(25);      
         private JTextArea responsearea = new JTextArea(50, 200);
         
 		
@@ -93,6 +96,7 @@ public class ClientGUI extends JFrame {
 	        this.add(disconnectbutton);
 	        this.add(new JLabel("Message"));
 	        this.add(messagefield);
+	        this.add(connectfield);
 	        this.add(new JLabel("Responses"));
 	 
 			// Create Scrolling Text Area in Swing
