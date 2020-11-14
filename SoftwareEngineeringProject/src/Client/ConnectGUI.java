@@ -17,31 +17,26 @@ import javax.swing.border.EmptyBorder;
 public class ConnectGUI extends JPanel
 {
 
-	private Client client;
+	private JTextField ipArea;
+	private JButton connectButton;
+	private JLabel ipLabel;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
 	public ConnectGUI(final GUI gui)
 	{
 		setBounds(100, 100, 550, 600);
 		this.setLayout(null);
 		
-		JButton connectButton = new JButton("Connect");
+		connectButton = new JButton("Connect");
 		connectButton.setBounds(163, 169, 89, 23);
 		this.add(connectButton);
 
-		final JTextField ipArea = new JTextField();
+		ipArea = new JTextField();
 		ipArea.setBounds(174, 61, 203, 23);
 		this.add(ipArea);
 		
-		JLabel lblNewLabel = new JLabel("IP address:");
-		lblNewLabel.setBounds(65, 61, 95, 23);
-		this.add(lblNewLabel);
+		ipLabel = new JLabel("IP address:");
+		ipLabel.setBounds(65, 61, 95, 23);
+		this.add(ipLabel);
 
 		connectButton.addActionListener(new ActionListener()
 		{
@@ -52,8 +47,9 @@ public class ConnectGUI extends JPanel
 				int port = 8000;
 				// -- instantiate a Client object
 				// the constructor will attempt to connect to the server
-				client = new Client(host, port);
-				if (client.getNetworkAccess() != null)
+				
+				gui.client = new Client(host, port);
+				if (gui.client.getNetworkAccess() != null)
 				{
 		            gui.loginPanel();
 				}

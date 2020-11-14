@@ -1,15 +1,11 @@
-package Server;
+package BasicClientServer;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
 
-/*
- * The server class must run in its own thread since the ServerSocket.accept() method
- * is blocking.
- */
-public class Server implements Runnable {
+public class Server {
 	/*
 	 The client will need the server's IP address. Here is how you find it for your system.
 	 
@@ -56,11 +52,6 @@ public class Server implements Runnable {
 	 */
 	private Vector<ClientHandler> clientconnections;
 	
-	public int getconnections ()
-	{
-		return clientconnections.size();
-	}
-	
 	/**
 	 * constructor creates the list of clients and
 	 * starts the server listening on the port
@@ -71,6 +62,9 @@ public class Server implements Runnable {
 		// -- construct the list of active client threads
 		clientconnections = new Vector<ClientHandler>();
 
+		// -- listen for incoming connection requests
+		listen();
+
 	}
 
 	/**
@@ -79,11 +73,9 @@ public class Server implements Runnable {
 	 * listens for the phone to ring
 	 * routes the incoming call to the requested extension
 	 * goes back to listening for the phone to ring
-	 * 
-	 * This is in its own thread because the .accept() method is blocking
 	 */
-	public void run () {
-		
+	private void listen ()
+	{
 		try {
 			System.out.println("Server is running...");
 			
@@ -108,7 +100,6 @@ public class Server implements Runnable {
 			
 		}
 	}
-
 
 	/**
 	 * creates a direct (peer-to-peer) connection between the client and the server
@@ -145,7 +136,7 @@ public class Server implements Runnable {
 		// -- find the object belonging to the client thread being terminated
 		for (int i = 0; i < clientconnections.size(); ++i) {
 			ClientHandler cc = clientconnections.get(i);
-			long x = cc.getID();
+			long x = cc.getId();
 			if (x == id) {
 				// -- remove it from the active threads list
 				//    the thread will terminate itself
@@ -163,12 +154,13 @@ public class Server implements Runnable {
 	/**
 	 * @param args: command line arguments (unused)
 	 */
-//	public static void main (String args[])
-//	{
-//		// -- instantiate the server anonymously
-//		//    no need to keep a reference to the object since it will run in its own thread
-//		new Server();				
-//	}
+	public static void main (String args[])
+	{
+		// -- instantiate the server anonymously
+		//    no need to keep a reference to the object since it will run in its own thread
+		new Server();		
+		
+	}
 
 
 

@@ -1,9 +1,7 @@
-package Server;
+package BasicClientServer;
 
 import java.io.IOException;
 import java.net.Socket;
-
-import Common.NetworkAccess;
 
 
 public class ClientHandler extends Thread {

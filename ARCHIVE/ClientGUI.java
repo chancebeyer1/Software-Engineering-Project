@@ -111,7 +111,7 @@ public class ClientGUI extends JFrame {
             connectbutton.addActionListener(
 					new ActionListener() {
 						public void actionPerformed(ActionEvent actionEvent) {
-		            		String host = "127.0.0.1";
+		            		String host = "172.18.48.1";
 		            		int port = 8000;
 		            		// -- instantiate a Client object
 		            		//    the constructor will attempt to connect to the server

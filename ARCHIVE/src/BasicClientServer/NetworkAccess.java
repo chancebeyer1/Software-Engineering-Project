@@ -1,4 +1,4 @@
-package Common;
+package BasicClientServer;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -43,7 +43,6 @@ public class NetworkAccess {
 			datain = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			dataout = new DataOutputStream(socket.getOutputStream());
 			
-			
 		} 
 		catch (UnknownHostException e) {
 			
@@ -53,7 +52,7 @@ public class NetworkAccess {
 		} 
 		catch (IOException e) {
 			
-			System.out.println(e); //"Unable to create I/O streams."
+			System.out.println("Unable to create I/O streams.");
 			System.exit(1);
 		}
 		

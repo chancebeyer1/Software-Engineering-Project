@@ -16,77 +16,81 @@ import java.awt.event.ActionEvent;
 
 public class ChangePasswordGUI extends JPanel
 {
-    private Client client;
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JButton btnNewButton;
-	private JButton btnNewButton_2;
-	private JTextField textField_2;
+	private JTextField currentPassTextField;
+	private JTextField newPassTextField;
+	private JTextField reenterPassTextField;
+	private JLabel currentPassLabel;
+	private JLabel newPassLabel;
+	private JLabel changePassLabel;
+	private JLabel reenterPassLabel;
+	private JButton changePassButton;
+	private JButton backButton;
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public ChangePasswordGUI(GUI gui) //final Client client, final JFrame f
+	public ChangePasswordGUI(final GUI gui) //final Client client, final JFrame f
 	{
-		this.client = client;
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(null);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Change Password");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(126, 11, 183, 26);
-		contentPane.add(lblNewLabel);
+		changePassLabel = new JLabel("Change Password");
+		changePassLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		changePassLabel.setBounds(126, 11, 183, 26);
+		add(changePassLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(167, 61, 183, 32);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		currentPassTextField = new JTextField();
+		currentPassTextField.setBounds(167, 61, 183, 32);
+		add(currentPassTextField);
+		currentPassTextField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(167, 104, 183, 32);
-		contentPane.add(textField_1);
+		newPassTextField = new JTextField();
+		newPassTextField.setColumns(10);
+		newPassTextField.setBounds(167, 104, 183, 32);
+		add(newPassTextField);
 		
 		
-		lblNewLabel_1 = new JLabel("Current Password");
-		lblNewLabel_1.setBounds(36, 70, 129, 14);
-		contentPane.add(lblNewLabel_1);
+		currentPassLabel = new JLabel("Current Password");
+		currentPassLabel.setBounds(36, 70, 129, 14);
+		add(currentPassLabel);
 		
-		lblNewLabel_2 = new JLabel("New Password");
-		lblNewLabel_2.setBounds(36, 113, 111, 14);
-		contentPane.add(lblNewLabel_2);
+		newPassLabel = new JLabel("New Password");
+		newPassLabel.setBounds(36, 113, 111, 14);
+		add(newPassLabel);
 		
-		btnNewButton = new JButton("Change Password");
-		btnNewButton.addActionListener(new ActionListener() {
+		changePassButton = new JButton("Change Password");
+		changePassButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String commandString = "changePassword;" + currentPassTextField.getText() + ";" + newPassTextField.getText() + ";" + reenterPassTextField.getText();
+				String replyString = gui.client.getNetworkAccess().sendString(commandString, true);
+		    	if(replyString == "success")
+		    	{
+		    		gui.loggedInPanel();
+		    	}
+		    	//else statement
 			}
 		});
-		btnNewButton.setBounds(145, 206, 141, 23);
-		contentPane.add(btnNewButton);
+		changePassButton.setBounds(145, 206, 141, 23);
+		add(changePassButton);
 		
-		btnNewButton_2 = new JButton("Back");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String commandString;
-		    	commandString = "disconnect";
-		    	client.getNetworkAccess().sendString(commandString, false);
+				gui.loggedInPanel();
 			}
 		});
-		btnNewButton_2.setBounds(10, 33, 155, 23);
-		contentPane.add(btnNewButton_2);
+		backButton.setBounds(10, 33, 155, 23);
+		add(backButton);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(167, 147, 183, 32);
-		contentPane.add(textField_2);
+		reenterPassTextField = new JTextField();
+		reenterPassTextField.setColumns(10);
+		reenterPassTextField.setBounds(167, 147, 183, 32);
+		add(reenterPassTextField);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Re-enter New Password");
-		lblNewLabel_2_1.setBounds(36, 156, 142, 14);
-		contentPane.add(lblNewLabel_2_1);
+		reenterPassLabel = new JLabel("Re-enter New Password");
+		reenterPassLabel.setBounds(36, 156, 142, 14);
+		add(reenterPassLabel);
 	}
 }

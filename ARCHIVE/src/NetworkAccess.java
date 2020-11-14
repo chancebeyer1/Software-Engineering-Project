@@ -1,4 +1,4 @@
-package Common;
+package BasicClientServer;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

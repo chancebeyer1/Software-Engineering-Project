@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 public class GUI extends JFrame
 {
 
+	//private User user;
+	public Client client;
 	private ConnectGUI connectGUI = new ConnectGUI(this);
 	private LoginGUI loginGUI = new LoginGUI(this);
 	private RegisterGUI registerGUI = new RegisterGUI(this);
@@ -96,7 +98,7 @@ public class GUI extends JFrame
 		
 		setLocationRelativeTo(null);
 		
-		//setLayout(new FlowLayout());
+		//setLayout(null);
 		
 		this.add(connectGUI);
 		this.add(loginGUI);

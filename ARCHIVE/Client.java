@@ -1,6 +1,5 @@
-package Client;
+package BasicClientServer;
 
-import Common.NetworkAccess;
 
 public class Client {
 	
@@ -28,11 +27,6 @@ public class Client {
 	 */
 	private NetworkAccess networkaccess;
   	
-	public NetworkAccess getNetworkAccess() 
-	{
-		return networkaccess;
-	}
-	
 	/**
 	 * Creates a peer-to-peer connection to the server
 	 * 
@@ -65,34 +59,19 @@ public class Client {
 
 		String host = "127.0.0.1";
 		int port = 8000;
-		// -- instantiate a Client object
-		//    the constructor will attempt to connect to the server
+
 		Client client = new Client(host, port);
 		
 		// -- send message to server and receive reply.
 		String commandString;
 		String replyString;
-		
-		for (int i = 0; i < 10; ++i) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			};
-			
-			// -- send a String to the server and wait for the response
-			commandString = "hello";
-			System.out.println("CLIENT send:  " + commandString);
-			replyString = client.networkaccess.sendString(commandString, true);
-			System.out.println("CLIENT receive: " + replyString);
-			
-		}
-		
-		// -- send an unrecognized command String to the server and wait for the response
-		commandString = "huh?";
+
+		commandString = "showmethemoney";
 		System.out.println("CLIENT send:  " + commandString);
 		replyString = client.networkaccess.sendString(commandString, true);
 		System.out.println("CLIENT receive: " + replyString);
+		
+
 		
 		// -- disconnect from the server
 		client.disconnect();

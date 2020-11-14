@@ -1,27 +1,21 @@
-package Server;
+package BasicClientServer;
 
 import java.util.HashMap;
 import java.util.Set;
 
-import Common.NetworkAccess;
-
-/**
- * @author reinhart
- *
- */
 public class CommandProtocol {
 
-	/**
-	 * commands and their responses
-	 */
-	private static HashMap<String, String> commands;	
+
+	private static HashMap<String, String> commands;
 	static {
 	    commands = new HashMap<>();
-	    commands.put("disconnect", "");
-	    commands.put("hello", "world!");
+		commands.put("disconnect", "");
+		commands.put("hello", "world!");
+		commands.put("showmethemoney", "");
 	}
-	
-	
+
+	// Create the BasicClientServer.UserDatabase Class
+	private static UserDatabase db_obj = new UserDatabase();
 
 	/**
 	 * process commands sent to the server
@@ -47,28 +41,23 @@ public class CommandProtocol {
 			na.sendString("world!" + "\n", false);
 			
 		}
+		else if (cmd.equals("showmethemoney")) {
+			na.sendString(db_obj.user_getAllInfo() + "\n", false);
+		}
 		else {
-			
 			na.sendString(cmd + "\n", false);
-			
 		}		
 	}
-	
-	/**
-	 * for testing the capabilities of the HashMap
-	 * Not used in the actual Client/Server system
-	 * 
-	 * @param args: command line arguments (unused)
-	 */
+
 	public static void main (String[] args) {
-		System.out.println(commands.get("disconnect"));
-		System.out.println(commands.get("hello"));
-		
-		Set<String>keys = commands.keySet();
-		for (String key : keys) {
-			System.out.println(key);
-		}
-		
-		System.out.println(commands.get("goodbye"));		
+//		System.out.println(commands.get("disconnect"));
+//		System.out.println(commands.get("hello"));
+//
+//		Set<String>keys = commands.keySet();
+//		for (String key : keys) {
+//			System.out.println(key);
+//		}
+//
+//		System.out.println(commands.get("goodbye"));
 	}
 }
