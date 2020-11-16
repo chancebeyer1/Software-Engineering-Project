@@ -32,16 +32,16 @@ public class RegisterGUI extends JPanel
 	/**
 	 * Create the frame.
 	 */
-	public RegisterGUI(final GUI gui) //final Client client, final JFrame f
+	public RegisterGUI(final ClientGUI gui) //final Client client, final JFrame f
 	{
-		setBounds(100, 100, 550, 600);
+		setBounds(0, 0, 550, 600);
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(null);
 		
 		registrationLabel = new JLabel("Registration");
 		registrationLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		registrationLabel.setBounds(0, 11, 534, 24);
-		this.add(registrationLabel);
+		this.add(registrationLabel); 
 		
 		emailTestfield = new JTextField();
 		emailTestfield.setBounds(208, 66, 267, 51);

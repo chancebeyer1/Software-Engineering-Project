@@ -55,11 +55,59 @@ public class Server implements Runnable {
 	 * Vector is a "thread safe" ArrayList
 	 */
 	private Vector<ClientHandler> clientconnections;
+	private Vector<ClientHandler> loggedInUsers;
 	
 	public int getconnections ()
 	{
 		return clientconnections.size();
 	}
+	
+	public void addLoggedInUsers(int id)
+	{
+		
+		for(ClientHandler cc : clientconnections)
+		{
+			if(cc.getID() == id)
+			{
+				try {
+					
+				
+				loggedInUsers.add(cc);
+				}
+				catch(Exception e) {
+					System.out.println(e);
+				}
+				}
+		}
+		
+	}
+	
+	public void removeLoggedInUsers(int id)
+	{
+		// -- find the object belonging to the client thread being terminated
+				for (int i = 0; i < loggedInUsers.size(); ++i) {
+					ClientHandler cc = loggedInUsers.get(i);
+					long x = cc.getID();
+					if (x == id) {
+						// -- remove it from the active threads list
+						//    the thread will terminate itself
+						loggedInUsers.remove(i);
+						
+						// -- place some text in the area to let the server operator know
+						//    what is going on
+						System.out.println("SERVER: logout successful for client id " + id + "\n");
+						break;
+					}
+				}
+		
+	}
+	
+	public int getLoggedInUsers ()
+	{
+		return loggedInUsers.size();
+	}
+	
+	
 	
 	/**
 	 * constructor creates the list of clients and
@@ -70,6 +118,7 @@ public class Server implements Runnable {
 		
 		// -- construct the list of active client threads
 		clientconnections = new Vector<ClientHandler>();
+		loggedInUsers = new Vector<ClientHandler>();
 
 	}
 

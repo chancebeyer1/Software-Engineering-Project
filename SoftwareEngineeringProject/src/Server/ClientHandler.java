@@ -47,10 +47,10 @@ public class ClientHandler extends Thread {
 		this.id = id;
 		this.name = Integer.toString(id);
 		go = true;
-		
 		networkaccess = new NetworkAccess(socket);		
 	}
 	
+
 
 	public String toString ()
 	{
@@ -82,7 +82,7 @@ public class ClientHandler extends Thread {
 		return server;
 	}
 	
-	// -- similar to a main() function in that it is the entry point of
+	// -- similar to a main() function in that it is the entry point of 
 	//    the thread
 	public void run () {
 		

@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class SerGUI extends JFrame
+public class ServerGUI extends JFrame
 {
 
 	private Server server;
@@ -40,8 +40,9 @@ public class SerGUI extends JFrame
 			{
 				try
 				{
-					SerGUI frame = new SerGUI();
+					ServerGUI frame = new ServerGUI();
 					frame.setVisible(true);
+					
 				} catch (Exception e)
 				{
 					e.printStackTrace();
@@ -53,7 +54,7 @@ public class SerGUI extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public SerGUI()
+	public ServerGUI()
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 600);
@@ -113,5 +114,16 @@ public class SerGUI extends JFrame
 		loggedInUsersLabel = new JLabel("Logged in users:");
 		loggedInUsersLabel.setBounds(179, 230, 132, 17);
 		getContentPane().add(loggedInUsersLabel);
+		
+		JButton serverStart = new JButton("START SERVER");
+		serverStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				server = new Server();
+            	Thread serverthread = new Thread(server);
+            	serverthread.start();
+			}
+		});
+		serverStart.setBounds(25, 47, 162, 60);
+		getContentPane().add(serverStart);
 	}
 }

@@ -21,9 +21,9 @@ public class ConnectGUI extends JPanel
 	private JButton connectButton;
 	private JLabel ipLabel;
 
-	public ConnectGUI(final GUI gui)
+	public ConnectGUI(final ClientGUI gui)
 	{
-		setBounds(100, 100, 550, 600);
+		setBounds(0, 0, 550, 600);
 		this.setLayout(null);
 		
 		connectButton = new JButton("Connect");

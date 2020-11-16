@@ -27,9 +27,9 @@ public class LoginGUI extends JPanel
 	private JButton recoverButton;
 
 
-	public LoginGUI(final GUI gui) //final Client client, final JFrame f
+	public LoginGUI(final ClientGUI gui) //final Client client, final JFrame f
 	{
-		setBounds(100, 100, 550, 600);
+		setBounds(0, 0, 550, 600);
 
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(null);
@@ -64,7 +64,12 @@ public class LoginGUI extends JPanel
 				
 				String commandString = "login;" + usernameTextfield.getText() + ";" + passwordTextfield.getText();
 				String replyString = gui.client.getNetworkAccess().sendString(commandString, true);
-		    	gui.loggedInPanel();
+				if (replyString.equals("success"))
+				{
+					gui.user = new User(usernameTextfield.getText(),passwordTextfield.getText());
+					gui.loggedInPanel();
+				}
+		    	
 			}
 		});
 		loginButton.setBounds(171, 165, 89, 23);
@@ -100,11 +105,6 @@ public class LoginGUI extends JPanel
 					String commandString = "recover;" + usernameTextfield.getText();
 					String replyString = gui.client.getNetworkAccess().sendString(commandString, true);	
 			    	//Message saying it was sent
-				}
-				else
-				{
-					String msg = "";
-					//Message saying error
 				}
 				
 			}

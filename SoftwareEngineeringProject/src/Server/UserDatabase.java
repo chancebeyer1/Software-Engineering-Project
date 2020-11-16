@@ -7,9 +7,7 @@ public class UserDatabase {
     private Connection conn;
     private Statement stmt;
     private ResultSet rs;
-    // private final String dbURL = "jdbc:mysql://127.0.0.1:3306/swe_database";
     private final String dbURL = "jdbc:mysql://csc.czmxorkhfbcs.us-west-1.rds.amazonaws.com:3306/CSC?useSSL=false";
-    // private final String DBAuser = "root";
     private final String DBAuser = "admin";
     private final String DBApasssword = "adminpass";
 
@@ -26,16 +24,17 @@ public class UserDatabase {
     // User Database SQL Querying Methods
     public String user_getAllInfo() {
         String returnString = "";
-        String sqlQuery = "Select * FROM swe_database.user_database";
+        String sqlQuery = "Select * FROM CSC.user_database";
 
         try {
             rs = stmt.executeQuery(sqlQuery);
 
             while(rs.next()) {
-                String userID = rs.getString("userID");
+                String userID = rs.getString("username");
                 String email = rs.getString("email");
                 String password = rs.getString("password");
-                returnString += (userID + " " + email + " " + password + "\n");
+                String lockCount = rs.getString("lockCount");
+                returnString += (userID + " " + email + " " + password + " " + lockCount + "\n");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,17 +43,22 @@ public class UserDatabase {
     }
 
     // Register New User
-    public String registerNewUser(String username, String password, String email, int lockCount)
+    public String registerNewUser(String pass_username, String pass_password, String pass_email, int pass_lockCount)
     {
         // Create the SQL Query
-        String registerUserQuery = "INSERT INTO CSC.user_database\n" + "VALUES(\'" + username + "\', \'"
-                + password + "\', \'" + email +"\', " + lockCount;
+        String registerUserQuery = "INSERT INTO CSC.user_database (username, password, email, lockCount)\n"
+                + "VALUES(\"" + pass_username + "\", \""
+                + pass_password + "\", \""
+                + pass_email + "\", "
+                + pass_lockCount + ");";
+        System.out.println(registerUserQuery);
         try {
-                rs = stmt.executeQuery(registerUserQuery);
+                stmt.executeUpdate(registerUserQuery);
         } catch (SQLException e) {
             e.printStackTrace();
+            return "fail";
         }
-        return "Successfully Registered New User!";
+        return "success";
     }
 
     // Get User's Email through Username
@@ -118,14 +122,14 @@ public class UserDatabase {
     }
 
     // Change User Password
-    public String changeUserPassword(String newPW, String username)
+    public String changeUserPassword(String username, String newPW)
     {
         String changePasswordQuery =
                 "UPDATE CSC.user_database\n" +
                 "SET password = \'" + newPW + "\'\n" +
                 "WHERE username = \'" + username + "\';\n";
         try {
-            rs = stmt.executeQuery(changePasswordQuery);
+            stmt.executeUpdate(changePasswordQuery);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -149,17 +153,18 @@ public class UserDatabase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("Successfully Retrieved " + username + "'s lock count = " + returnString + "!");
         return returnString;
     }
 
     // Update Lock Count
-    public String updateLockCount(String username, String newLockCount)
+    public String updateLockCount(String username, int newLockCount)
     {
         String updateLockCountQuery = "UPDATE CSC.user_database\n" +
                 "SET lockCount = " + newLockCount + "\n" +
                 "WHERE username = \'" + username + "\';";
         try {
-            rs = stmt.executeQuery(updateLockCountQuery);
+            stmt.executeUpdate(updateLockCountQuery);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -187,23 +192,20 @@ public class UserDatabase {
     }
 
     // Return the Total Number of Registered Users
-    public String getTotalUsers()
+    public int getRegisteredUserCount()
     {
+        int count = 0;
         String returnString = "";
         String getTotalUsersQuery = "SELECT COUNT(*)\n" +
                 "FROM CSC.user_database;\n";
         try {
             rs = stmt.executeQuery(getTotalUsersQuery);
-
-            while(rs.next()) {
-                String totalUsers = rs.getString("count");
-                returnString += totalUsers;
-            }
+            rs.next();
+            count = rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return returnString;
+        System.out.println("Total Registered Users: " + count);
+        return count;
     }
-
-
 }

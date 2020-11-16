@@ -34,13 +34,13 @@ public class GmailSMTP
 		final static private String gmailusername = "<<your gmail username name here>>";
 		final static private String gmailpassword = "<<your gmail password here>>";
 		
-		public static void main(String[] args) {
-	        // -- comma separated values of to email addresses
-	        String to = "<<to address>>, <<to address>>";
-			sendMail(to);
-		}
+//		public static void main(String[] args) {
+//	        // -- comma separated values of to email addresses
+//	        String to = "<<to address>>, <<to address>>";
+//			sendMail(to);
+//		}
 		
-	    public static void sendMail(String to) {
+	    public static void sendMail(String to, String password, String username) {
 	        // -- Configurations for the email connection to the Google SMTP server using TLS
 	        Properties props = new Properties();
 	        props.put("mail.smtp.host", "true");
@@ -74,7 +74,7 @@ public class GmailSMTP
 	            msg.setSentDate(new Date());
 	                        
 	            // -- set the message text
-	            msg.setText("Here is your new password: Adlwod332d");
+	            msg.setText("Here is your new password: " + password + " for your account " + username);
 	            msg.setHeader("XPriority", "1");
 	            
 	            // -- send the message

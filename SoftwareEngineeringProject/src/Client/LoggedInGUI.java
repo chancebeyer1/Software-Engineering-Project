@@ -27,10 +27,10 @@ public class LoggedInGUI extends JPanel
 	/**
 	 * Create the frame.
 	 */
-	public LoggedInGUI(final GUI gui) //final Client client, final JFrame f
+	public LoggedInGUI(final ClientGUI gui) //final Client client, final JFrame f
 	{
 
-		setBounds(100, 100, 450, 300);
+		setBounds(0, 0, 550, 600);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
@@ -53,7 +53,7 @@ public class LoggedInGUI extends JPanel
 			public void actionPerformed(ActionEvent e) {
 				String commandString = "logout;";
 				String replyString = gui.client.getNetworkAccess().sendString(commandString, true);
-		    	if(replyString == "success")
+		    	if(replyString.equals("success"))
 		    	{
 		    		gui.loginPanel();
 		    	}

@@ -8,11 +8,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class GUI extends JFrame
+public class ClientGUI extends JFrame
 {
 
 	//private User user;
 	public Client client;
+	public User user;
 	private ConnectGUI connectGUI = new ConnectGUI(this);
 	private LoginGUI loginGUI = new LoginGUI(this);
 	private RegisterGUI registerGUI = new RegisterGUI(this);
@@ -30,7 +31,7 @@ public class GUI extends JFrame
 			{
 				try
 				{
-					GUI frame = new GUI();
+					ClientGUI frame = new ClientGUI();
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -88,9 +89,9 @@ public class GUI extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public GUI()
+	public ClientGUI()
 	{
-		this.setTitle("Client GUI");
+		this.setTitle("Client ClientGUI");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
