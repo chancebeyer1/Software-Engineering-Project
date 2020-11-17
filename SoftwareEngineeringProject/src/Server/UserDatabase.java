@@ -183,7 +183,7 @@ public class UserDatabase {
 
             while(rs.next()) {
                 String getusername = rs.getString("username");
-                returnString += getusername;
+                returnString += getusername + "\n";
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -197,7 +197,7 @@ public class UserDatabase {
         int count = 0;
         String returnString = "";
         String getTotalUsersQuery = "SELECT COUNT(*)\n" +
-                "FROM CSC.user_database;\n";
+                "FROM CSC.user_database\n;";
         try {
             rs = stmt.executeQuery(getTotalUsersQuery);
             rs.next();
@@ -208,4 +208,24 @@ public class UserDatabase {
         System.out.println("Total Registered Users: " + count);
         return count;
     }
+    
+    public String getAllRegisteredUsers()
+    {
+        String returnString = "";
+        String getAllRegisteredUsersQuery = "SELECT username\n" +
+                "FROM CSC.user_database\n;";
+        try {
+            rs = stmt.executeQuery(getAllRegisteredUsersQuery);
+
+            while(rs.next()) {
+                String getusername = rs.getString("username");
+                returnString += getusername + "\n";
+                //returnString += returnString == "" ? getusername + "\n" : (";" + getusername + "\n");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return returnString;
+    }
+    
 }

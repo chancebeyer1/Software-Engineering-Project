@@ -17,9 +17,10 @@ public class ServerGUI extends JFrame
 {
 
 	private Server server;
+	private static UserDatabase db_obj = new UserDatabase();
 	private JTextField registeredUsers;
 	private JTextField numLoggedInUsers;
-	private JTextField lockedOutUsers;
+	private JTextArea lockedOutUsers;
 	private JTextField connectedUsers;
 	private JTextArea loggedInUsers;
 	private JLabel registerUserLabel;
@@ -63,11 +64,30 @@ public class ServerGUI extends JFrame
 		getQueriesButton = new JButton("Get Queries");
 		getQueriesButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent actionEvent) {
-	            		int p = server.getconnections();
-	            		connectedUsers.setText(p + "");	    													
+					
+						//Query number of connected users
+	            		int connected = server.getconnections();
+	            		connectedUsers.setText(connected + "");
+	            		
+	            		//Query number of logged in users
+	            		int loggedIn = server.getLoggedInUsers();
+	            		numLoggedInUsers.setText(loggedIn + "");	
+	            		
+	            		//Query number of registered users
+	            		int registered = db_obj.getRegisteredUserCount();
+	            		registeredUsers.setText(registered + "");
+	            		
+	            		//Query which users are logged in
+	    				String registeredUsers = db_obj.getAllRegisteredUsers();
+	    				loggedInUsers.setText(registeredUsers + "");
+	            		
+	            		//Query which users are locked out
+	    				String allLocked = db_obj.getAllLockedUser();
+	    				lockedOutUsers.setText(allLocked + "");
+	            		
 					}
 		});
-		getQueriesButton.setBounds(33, 226, 115, 23);
+		getQueriesButton.setBounds(46, 254, 115, 23);
 		getContentPane().add(getQueriesButton);
 		
 		
@@ -77,21 +97,21 @@ public class ServerGUI extends JFrame
 		registeredUsers.setColumns(10);
 		
 		numLoggedInUsers = new JTextField();
-		numLoggedInUsers.setBounds(387, 118, 86, 20);
+		numLoggedInUsers.setBounds(387, 133, 86, 20);
 		getContentPane().add(numLoggedInUsers);
 		numLoggedInUsers.setColumns(10);
 		
 		loggedInUsers = new JTextArea();
-		loggedInUsers.setBounds(290, 178, 234, 114);
+		loggedInUsers.setBounds(290, 308, 234, 86);
 		getContentPane().add(loggedInUsers);
 		
-		lockedOutUsers = new JTextField();
-		lockedOutUsers.setBounds(387, 338, 86, 20);
+		lockedOutUsers = new JTextArea();
+		lockedOutUsers.setBounds(290, 427, 234, 86);
 		getContentPane().add(lockedOutUsers);
 		lockedOutUsers.setColumns(10);
 		
 		connectedUsers = new JTextField();
-		connectedUsers.setBounds(387, 420, 86, 20);
+		connectedUsers.setBounds(387, 217, 86, 20);
 		getContentPane().add(connectedUsers);
 		connectedUsers.setColumns(10);
 		
@@ -100,19 +120,19 @@ public class ServerGUI extends JFrame
 		getContentPane().add(registerUserLabel);
 		
 		numLoggedInUsersLabel = new JLabel("Logged in users:");
-		numLoggedInUsersLabel.setBounds(245, 121, 132, 17);
+		numLoggedInUsersLabel.setBounds(245, 135, 132, 17);
 		getContentPane().add(numLoggedInUsersLabel);
 		
 		lockedOutUsersLabel = new JLabel("Locked out users:");
-		lockedOutUsersLabel.setBounds(245, 341, 132, 17);
+		lockedOutUsersLabel.setBounds(166, 464, 132, 17);
 		getContentPane().add(lockedOutUsersLabel);
 		
 		connectedUsersLabel = new JLabel("Connected users:");
-		connectedUsersLabel.setBounds(245, 423, 132, 17);
+		connectedUsersLabel.setBounds(245, 219, 132, 17);
 		getContentPane().add(connectedUsersLabel);
 		
 		loggedInUsersLabel = new JLabel("Logged in users:");
-		loggedInUsersLabel.setBounds(179, 230, 132, 17);
+		loggedInUsersLabel.setBounds(166, 344, 132, 17);
 		getContentPane().add(loggedInUsersLabel);
 		
 		JButton serverStart = new JButton("START SERVER");

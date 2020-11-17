@@ -71,7 +71,7 @@ public class LoggedInGUI extends JPanel
 			public void actionPerformed(ActionEvent e) {
 				String commandString = "logout;";
 				String replyString = gui.client.getNetworkAccess().sendString(commandString, true);
-		    	if(replyString == "success")
+		    	if(replyString.equals("success"))
 		    	{
 		    		commandString = "disconnect;";
 			    	gui.client.getNetworkAccess().sendString(commandString, false);
