@@ -13,13 +13,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class RegisterGUI extends JPanel
 {
-	private JTextField emailTestfield;
-	private JTextField usernameTestfield;
-	private JTextField passwordTestfield;
-	private JTextField reenterPassTestfield;
+	private JTextField emailTextfield;
+	private JTextField usernameTextfield;
+	private JPasswordField passwordField;
+	private JPasswordField reenterPasswordField;
 	private JLabel registrationLabel;
 	private JLabel emailLabel;
 	private JLabel usernameLabel;
@@ -43,25 +44,25 @@ public class RegisterGUI extends JPanel
 		registrationLabel.setBounds(0, 11, 534, 24);
 		this.add(registrationLabel); 
 		
-		emailTestfield = new JTextField();
-		emailTestfield.setBounds(208, 66, 267, 51);
-		this.add(emailTestfield);
-		emailTestfield.setColumns(10);
+		emailTextfield = new JTextField();
+		emailTextfield.setBounds(208, 66, 267, 51);
+		this.add(emailTextfield);
+		emailTextfield.setColumns(10);
 		
-		usernameTestfield = new JTextField();
-		usernameTestfield.setColumns(10);
-		usernameTestfield.setBounds(208, 155, 267, 51);
-		this.add(usernameTestfield);
+		usernameTextfield = new JTextField();
+		usernameTextfield.setColumns(10);
+		usernameTextfield.setBounds(208, 155, 267, 51);
+		this.add(usernameTextfield);
 		
-		passwordTestfield = new JTextField();
-		passwordTestfield.setColumns(10);
-		passwordTestfield.setBounds(208, 244, 267, 51);
-		this.add(passwordTestfield);
+		passwordField = new JPasswordField();
+		passwordField.setColumns(10);
+		passwordField.setBounds(208, 244, 267, 51);
+		this.add(passwordField);
 		
-		reenterPassTestfield = new JTextField();
-		reenterPassTestfield.setColumns(10);
-		reenterPassTestfield.setBounds(208, 339, 267, 51);
-		this.add(reenterPassTestfield);
+		reenterPasswordField = new JPasswordField();
+		reenterPasswordField.setColumns(10);
+		reenterPasswordField.setBounds(208, 339, 267, 51);
+		this.add(reenterPasswordField);
 		
 		emailLabel = new JLabel("Email");
 		emailLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -86,13 +87,32 @@ public class RegisterGUI extends JPanel
 		registerButton = new JButton("Register");
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String commandString = "register;" + emailTestfield.getText() + ";" + usernameTestfield.getText() + ";" + passwordTestfield.getText() + ";" + reenterPassTestfield.getText();
+				String password = new String(passwordField.getPassword());
+				String reenterPassword = new String(reenterPasswordField.getPassword());
+				String commandString = "register;" + emailTextfield.getText() + ";" + usernameTextfield.getText() + ";" + password + ";" + reenterPassword;
 				String replyString = gui.client.getNetworkAccess().sendString(commandString, true);
-		    	if(replyString == "success")
+		    	if(replyString.equals("success"))
 		    	{
-		    		commandString = "login;" + usernameTestfield.getText() + ";" + passwordTestfield.getText();
-		    		replyString = gui.client.getNetworkAccess().sendString(commandString, true);
-		    		gui.loggedInPanel();
+		    		System.out.println("success recieved");
+		    		String commandString2 = "login;" + usernameTextfield.getText() + ";" + password;
+					String replyString2 = gui.client.getNetworkAccess().sendString(commandString2, true);
+					if (replyString2.equals("success"))
+					{
+						gui.user = new User(usernameTextfield.getText(),password);
+						gui.loggedInPanel();
+						emailTextfield.setText("");
+						usernameTextfield.setText("");
+						passwordField.setText("");
+						reenterPasswordField.setText("");
+					}
+					else
+					{
+						gui.loginPanel();
+						emailTextfield.setText("");
+						usernameTextfield.setText("");
+						passwordField.setText("");
+						reenterPasswordField.setText("");
+					}
 		    	}
 		    	
 			}
@@ -111,5 +131,4 @@ public class RegisterGUI extends JPanel
 		disconnectButton.setBounds(185, 507, 122, 23);
 		this.add(disconnectButton);
 	}
-
 }

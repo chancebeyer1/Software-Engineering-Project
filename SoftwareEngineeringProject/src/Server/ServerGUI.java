@@ -78,8 +78,8 @@ public class ServerGUI extends JFrame
 	            		registeredUsers.setText(registered + "");
 	            		
 	            		//Query which users are logged in
-	    				String registeredUsers = db_obj.getAllRegisteredUsers();
-	    				loggedInUsers.setText(registeredUsers + "");
+	    				String loggedInUsernames = server.getAllLoggedInUsers();
+	    				loggedInUsers.setText(loggedInUsernames + "");
 	            		
 	            		//Query which users are locked out
 	    				String allLocked = db_obj.getAllLockedUser();

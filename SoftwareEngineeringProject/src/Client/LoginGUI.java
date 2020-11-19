@@ -6,6 +6,7 @@ import java.awt.Frame;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -17,7 +18,7 @@ import java.awt.event.ActionEvent;
 public class LoginGUI extends JPanel
 {
 	private JTextField usernameTextfield;
-	private JTextField passwordTextfield;
+	private JPasswordField passwordField;
 	private JLabel welcomeLabel;
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
@@ -44,10 +45,10 @@ public class LoginGUI extends JPanel
 		this.add(usernameTextfield);
 		usernameTextfield.setColumns(10);
 		
-		passwordTextfield = new JTextField();
-		passwordTextfield.setColumns(10);
-		passwordTextfield.setBounds(126, 122, 183, 32);
-		this.add(passwordTextfield);
+		passwordField = new JPasswordField();
+		passwordField.setColumns(10);
+		passwordField.setBounds(126, 122, 183, 32);
+		this.add(passwordField);
 		
 		
 		usernameLabel = new JLabel("Username");
@@ -61,13 +62,20 @@ public class LoginGUI extends JPanel
 		loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String commandString = "login;" + usernameTextfield.getText() + ";" + passwordTextfield.getText();
+				String password = new String(passwordField.getPassword());
+				String commandString = "login;" + usernameTextfield.getText() + ";" + password;
 				String replyString = gui.client.getNetworkAccess().sendString(commandString, true);
 				if (replyString.equals("success"))
 				{
-					gui.user = new User(usernameTextfield.getText(),passwordTextfield.getText());
+					gui.user = new User(usernameTextfield.getText(),password);
 					gui.loggedInPanel();
+					usernameTextfield.setText("");
+					passwordField.setText("");
+				}
+				else
+				{
+					usernameTextfield.setText("INVALID");
+					passwordField.setText("");
 				}
 		    	
 			}

@@ -31,8 +31,8 @@ public class GmailSMTP
 
 		// -- You must have a valid gmail username/password pair to use
 		// gmail as a SMTP service
-		final static private String gmailusername = "<<your gmail username name here>>";
-		final static private String gmailpassword = "<<your gmail password here>>";
+		final static private String gmailusername = "csc335group4@gmail.com";
+		final static private String gmailpassword = "AdminPass1!";
 		
 //		public static void main(String[] args) {
 //	        // -- comma separated values of to email addresses
@@ -74,7 +74,7 @@ public class GmailSMTP
 	            msg.setSentDate(new Date());
 	                        
 	            // -- set the message text
-	            msg.setText("Here is your new password: " + password + " for your account " + username);
+	            msg.setText("Here is your new password: " + "'" + password + "'"  + " for your account " + "'" + username + "'");
 	            msg.setHeader("XPriority", "1");
 	            
 	            // -- send the message

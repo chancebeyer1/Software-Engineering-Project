@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -37,7 +39,14 @@ public class ConnectGUI extends JPanel
 		ipLabel = new JLabel("IP address:");
 		ipLabel.setBounds(65, 61, 95, 23);
 		this.add(ipLabel);
-
+		
+		ipArea.addKeyListener(new KeyAdapter() {
+		      public void keyReleased(KeyEvent e) {
+		    	  if(e.getKeyChar()==KeyEvent.VK_ENTER){
+		    		  connectButton.doClick();
+	                }
+		      }
+		    });
 		connectButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent actionEvent)
@@ -52,6 +61,7 @@ public class ConnectGUI extends JPanel
 				if (gui.client.getNetworkAccess() != null)
 				{
 		            gui.loginPanel();
+		            ipArea.setText("");
 				}
 			}
 		});

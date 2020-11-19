@@ -51,7 +51,7 @@ public class LoggedInGUI extends JPanel
 		logoutButton = new JButton("Logout");
 		logoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String commandString = "logout;";
+				String commandString = "logout;" + gui.user.getUsername();
 				String replyString = gui.client.getNetworkAccess().sendString(commandString, true);
 		    	if(replyString.equals("success"))
 		    	{
@@ -69,7 +69,7 @@ public class LoggedInGUI extends JPanel
 		disconnectButton = new JButton("Disconnect");
 		disconnectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String commandString = "logout;";
+				String commandString = "logout;" + gui.user.getUsername();
 				String replyString = gui.client.getNetworkAccess().sendString(commandString, true);
 		    	if(replyString.equals("success"))
 		    	{

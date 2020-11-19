@@ -35,23 +35,28 @@ public class CommandProtocol
 			if (!password.equals(reenterPassword))
 			{
 				na.sendString("passwordsDoNotMatch" + "\n", false);
+				System.out.println("passwordsDoNotMatch");
 			}
-			else if (sysUsername != null)
+			else if (sysUsername != "")
 			{
 				na.sendString("userExists" + "\n", false);
+				System.out.println("userExists = " + sysUsername);
 			}
 			else if (!RegexValidation.validSimplePassword(password))
 			{
 				na.sendString("passwordInvalid" + "\n", false);
+				System.out.println("passwordInvalid");
 			}
 			else if (!RegexValidation.validEmailAddress(email))
 			{
 				na.sendString("emailInvalid" + "\n", false);
+				System.out.println("emailInvalid");
 			}
 			else
 			{
 				db_obj.registerNewUser(username, password, email, lockCount);
 				na.sendString("success" + "\n", false);
+				System.out.println("success");
 			}
 
 			System.out.println("Successfully Registered New User!");
@@ -73,13 +78,14 @@ public class CommandProtocol
 				if (sysPassword.equals(parse[2]))
 				{
 					
-					ch.getServer().addLoggedInUsers(ch.getID());
+					ch.getServer().addLoggedInUsers(username); 
 					db_obj.updateLockCount(username, 0);
 					na.sendString("success" + "\n", false);
 				}
 				else
 				{
 					na.sendString("invalid" + "\n", false);
+					db_obj.updateLockCount(username, lockCount++);
 				}
 			}
 
@@ -88,7 +94,7 @@ public class CommandProtocol
 		{
 			String username = parse[1];
 			String sysPassword = db_obj.getUserPassword(username);
-			if (sysPassword == null)
+			if (sysPassword == "")
 			{
 				na.sendString("invalidUsername" + "\n", false);
 			}
@@ -123,7 +129,7 @@ public class CommandProtocol
 		}
 		else if (parse[0].equals("logout"))
 		{
-			ch.getServer().removeLoggedInUsers(ch.getID());
+			ch.getServer().removeLoggedInUsers(parse[1]);
 			na.sendString("success" + "\n", false);
 		}
 		

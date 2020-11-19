@@ -209,23 +209,25 @@ public class UserDatabase {
         return count;
     }
     
-    public String getAllRegisteredUsers()
-    {
-        String returnString = "";
-        String getAllRegisteredUsersQuery = "SELECT username\n" +
-                "FROM CSC.user_database\n;";
-        try {
-            rs = stmt.executeQuery(getAllRegisteredUsersQuery);
-
-            while(rs.next()) {
-                String getusername = rs.getString("username");
-                returnString += getusername + "\n";
-                //returnString += returnString == "" ? getusername + "\n" : (";" + getusername + "\n");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return returnString;
-    }
+    
+    
+//    public String getAllRegisteredUsers()
+//    {
+//        String returnString = "";
+//        String getAllRegisteredUsersQuery = "SELECT username\n" +
+//                "FROM CSC.user_database\n;";
+//        try {
+//            rs = stmt.executeQuery(getAllRegisteredUsersQuery);
+//
+//            while(rs.next()) {
+//                String getusername = rs.getString("username");
+//                returnString += getusername + "\n";
+//                //returnString += returnString == "" ? getusername + "\n" : (";" + getusername + "\n");
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return returnString;
+//    }
     
 }
