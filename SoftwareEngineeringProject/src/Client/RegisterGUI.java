@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
@@ -83,6 +85,14 @@ public class RegisterGUI extends JPanel
 		reenterPasswordLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		reenterPasswordLabel.setBounds(10, 339, 180, 51);
 		this.add(reenterPasswordLabel);
+		
+		reenterPasswordField.addKeyListener(new KeyAdapter() {
+		      public void keyReleased(KeyEvent e) {
+		    	  if(e.getKeyChar()==KeyEvent.VK_ENTER){
+		    		  registerButton.doClick();
+	                }
+		      }
+		    });
 		
 		registerButton = new JButton("Register");
 		registerButton.addActionListener(new ActionListener() {

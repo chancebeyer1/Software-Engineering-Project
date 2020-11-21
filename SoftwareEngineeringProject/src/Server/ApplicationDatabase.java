@@ -23,31 +23,41 @@ public class ApplicationDatabase
 			this.conn = DriverManager.getConnection(dbURL, DBAuser, DBApasssword);
 			stmt = conn.createStatement();
 			System.out.println("Connection To the Database is Successful");
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 	}
-	
-	 public String getAllData() {
-	        String returnString = "";
-	        String sqlQuery = "Select * FROM CSC.application";
 
-	        try {
-	            rs = stmt.executeQuery(sqlQuery);
+	public String getAllData()
+	{
+		String returnString = "";
+		String sqlQuery = "Select * FROM CSC.application";
 
-	            while(rs.next()) {
-	            	String id = rs.getString("id"); 
-	            	String first_name = rs.getString("first_name");
-	            	String last_name = rs.getString("last_name");
-	            	String email = rs.getString("email");
-	            	String birthdate = rs.getString("birthdate");
-	            	String added = rs.getString("added");
-	                returnString += (id + " " + first_name + " " + last_name + " " + email + " " + birthdate + " " + added + "\n");
-	            }
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	        return returnString;
-	    }
+		try
+		{
+			rs = stmt.executeQuery(sqlQuery);
+
+			while (rs.next())
+			{
+				String rank = rs.getString("Overall rank");
+				String country = rs.getString("Country or region");
+				String score = rs.getString("Score");
+				String gdp = rs.getString("GDP per capita");
+				String socialSupport = rs.getString("Social support");
+				String lifeExpectancy = rs.getString("Healthy life expectancy");
+				returnString += returnString == ""
+						? (rank + "," + country + "," + score + "," + gdp + "," + socialSupport + "," + lifeExpectancy)
+						: (";" + rank + "," + country + "," + score + "," + gdp + "," + socialSupport + ","
+								+ lifeExpectancy);
+
+			}
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return returnString;
+	}
 }

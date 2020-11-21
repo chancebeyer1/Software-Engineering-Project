@@ -13,6 +13,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 public class LoginGUI extends JPanel
@@ -50,6 +52,13 @@ public class LoginGUI extends JPanel
 		passwordField.setBounds(126, 122, 183, 32);
 		this.add(passwordField);
 		
+		passwordField.addKeyListener(new KeyAdapter() {
+		      public void keyReleased(KeyEvent e) {
+		    	  if(e.getKeyChar()==KeyEvent.VK_ENTER){
+		    		  loginButton.doClick();
+	                }
+		      }
+		    });
 		
 		usernameLabel = new JLabel("Username");
 		usernameLabel.setBounds(36, 70, 61, 14);
@@ -101,7 +110,7 @@ public class LoginGUI extends JPanel
 		    	//f.setState(Frame.NORMAL);
 			}
 		});
-		disconnectButton.setBounds(31, 199, 155, 23);
+		disconnectButton.setBounds(139, 241, 155, 23);
 		this.add(disconnectButton);
 		
 		recoverButton = new JButton("Recover Password");
@@ -117,7 +126,7 @@ public class LoginGUI extends JPanel
 				
 			}
 		});
-		recoverButton.setBounds(137, 233, 155, 23);
+		recoverButton.setBounds(36, 199, 155, 23);
 		this.add(recoverButton);
 	}
 }

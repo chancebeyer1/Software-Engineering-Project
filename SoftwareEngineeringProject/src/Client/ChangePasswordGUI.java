@@ -13,6 +13,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 public class ChangePasswordGUI extends JPanel
@@ -60,6 +62,14 @@ public class ChangePasswordGUI extends JPanel
 		newPassLabel = new JLabel("New Password");
 		newPassLabel.setBounds(49, 113, 111, 14);
 		add(newPassLabel);
+		
+//		reenterPasswordField.addKeyListener(new KeyAdapter() {
+//		      public void keyReleased(KeyEvent e) {
+//		    	  if(e.getKeyChar()==KeyEvent.VK_ENTER){
+//		    		  changePassButton.doClick();
+//	                }
+//		      }
+//		    });
 		
 		changePassButton = new JButton("Change Password");
 		changePassButton.addActionListener(new ActionListener() {
