@@ -38,7 +38,7 @@ public class CommandProtocol
 				na.sendString("passwordsDoNotMatch" + "\n", false);
 				System.out.println("passwordsDoNotMatch");
 			}
-			else if (sysUsername != "")
+			else if (!sysUsername.equals(""))
 			{
 				na.sendString("userExists" + "\n", false);
 				System.out.println("userExists = " + sysUsername);
@@ -67,8 +67,9 @@ public class CommandProtocol
 		{
 			String username = parse[1];
 			String sysPassword = userDB.getUserPassword(username);
-			int lockCount = Integer.parseInt(userDB.getLockCount(username));
-			if (lockCount == 3)
+			boolean validUser = !sysPassword.equals("");
+			int lockCount = validUser ? Integer.parseInt(userDB.getLockCount(username)) : 0;
+			if (++lockCount == 3)
 			{
 				System.out.println("lockCount == 3");
 				na.sendString("accountLocked" + "\n", false);
@@ -86,7 +87,7 @@ public class CommandProtocol
 				else
 				{
 					na.sendString("invalid" + "\n", false);
-					userDB.updateLockCount(username, lockCount++);
+					userDB.updateLockCount(username, lockCount);
 				}
 			}
 
@@ -95,7 +96,7 @@ public class CommandProtocol
 		{
 			String username = parse[1];
 			String sysPassword = userDB.getUserPassword(username);
-			if (sysPassword == "")
+			if (sysPassword.equals(""))
 			{
 				na.sendString("invalidUsername" + "\n", false);
 			}
