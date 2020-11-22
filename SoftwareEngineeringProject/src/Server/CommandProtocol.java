@@ -74,23 +74,16 @@ public class CommandProtocol
 				System.out.println("lockCount == 3");
 				na.sendString("accountLocked" + "\n", false);
 			}
-			else
+			else if (sysPassword.equals(parse[2]))
 			{
-
-				if (sysPassword.equals(parse[2]))
-				{
-					
-					ch.getServer().addLoggedInUsers(username); 
-					userDB.updateLockCount(username, 0);
-					na.sendString("success" + "\n", false);
-				}
-				else
-				{
-					na.sendString("invalid" + "\n", false);
-					userDB.updateLockCount(username, lockCount);
-				}
+				ch.getServer().addLoggedInUsers(username);
+				userDB.updateLockCount(username, 0);
+				na.sendString("success" + "\n", false);
 			}
-
+			else {
+				na.sendString("invalid" + "\n", false);
+				userDB.updateLockCount(username, lockCount);
+			}
 		}
 		else if (parse[0].equals("recover"))
 		{
