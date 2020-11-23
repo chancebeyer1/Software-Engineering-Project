@@ -18,7 +18,7 @@ public class CommandProtocol
 		System.out.println("SERVER receive: " + cmd);
 
 		String[] parse = cmd.split(";");
-
+		String response = ""; // the response to be sent back to network access.
 		if (parse[0].equals("disconnect"))
 		{
 
@@ -35,29 +35,25 @@ public class CommandProtocol
 			int lockCount = 0;
 			if (!password.equals(reenterPassword))
 			{
-				na.sendString("passwordsDoNotMatch" + "\n", false);
-				System.out.println("passwordsDoNotMatch");
+				System.out.println(response = "passwordsDoNotMatch");
 			}
 			else if (!sysUsername.equals(""))
 			{
-				na.sendString("userExists" + "\n", false);
-				System.out.println("userExists = " + sysUsername);
+				response = "userExists";
+				System.out.println(response + " = " + sysUsername);
 			}
 			else if (!RegexValidation.validSimplePassword(password))
 			{
-				na.sendString("passwordInvalid" + "\n", false);
-				System.out.println("passwordInvalid");
+				System.out.println(response = "passwordInvalid");
 			}
 			else if (!RegexValidation.validEmailAddress(email))
 			{
-				na.sendString("emailInvalid" + "\n", false);
-				System.out.println("emailInvalid");
+				System.out.println(response = "emailInvalid");
 			}
 			else
 			{
 				userDB.registerNewUser(username, password, email, lockCount);
-				na.sendString("success" + "\n", false);
-				System.out.println("success");
+				System.out.println(response = "success");
 			}
 
 			System.out.println("Successfully Registered New User!");
@@ -72,17 +68,17 @@ public class CommandProtocol
 			if (++lockCount == 3)
 			{
 				System.out.println("lockCount == 3");
-				na.sendString("accountLocked" + "\n", false);
+				response = "accountLocked";
 			}
 			else if (sysPassword.equals(parse[2]))
 			{
 				ch.getServer().addLoggedInUsers(username);
 				userDB.updateLockCount(username, 0);
-				na.sendString("success" + "\n", false);
+				response = "success";
 			}
 			else {
-				na.sendString("invalid" + "\n", false);
 				userDB.updateLockCount(username, lockCount);
+				response = "invalid";
 			}
 		}
 		else if (parse[0].equals("recover"))
@@ -91,13 +87,13 @@ public class CommandProtocol
 			String sysPassword = userDB.getUserPassword(username);
 			if (sysPassword.equals(""))
 			{
-				na.sendString("invalidUsername" + "\n", false);
+				response = "invalidUsername";
 			}
 			else
 			{
 				String sysEmail = userDB.getEmail(username);
 				GmailSMTP.sendMail(sysEmail, sysPassword, username);
-				na.sendString("success" + "\n", false);
+				response = "success";
 			}
 		}
 		else if (parse[0].equals("changePassword"))
@@ -106,31 +102,31 @@ public class CommandProtocol
 			String sysPassword = userDB.getUserPassword(username);
 			if (!sysPassword.equals(currentPassword))
 			{
-				na.sendString("incorrectCurrentPass" + "\n", false);
+				response = "incorrectCurrentPass";
 			}
 			else if (!newPassword.equals(reenterPassword))
 			{
-				na.sendString("passwordsDoNotMatch" + "\n", false);
+				response = "passwordsDoNotMatch";
 			}
 			else if (!RegexValidation.validSimplePassword(newPassword))
 			{
-				na.sendString("passwordInvalid" + "\n", false);
+				response = "passwordInvalid";
 			}
 			else
 			{
 				userDB.changeUserPassword(username, newPassword);
-				na.sendString("success" + "\n", false);
+				response = "success";
 			}
 		}
 		else if (parse[0].equals("logout"))
 		{
 			ch.getServer().removeLoggedInUsers(parse[1]);
-			na.sendString("success" + "\n", false);
+			response = "success";
 		}
 		else if (parse[0].equals("application"))
 		{
 			String app = appDB.getAllData();
-			na.sendString(app + "\n", false);
+			response = app;
 		}
 		
 		
@@ -205,8 +201,9 @@ public class CommandProtocol
 //		{
 //			na.sendString(cmd + "\n", false);
 //		}
-		
-		
+
+		// send response back to the network access.
+		na.sendString(response + "\n",false);
 	}
 
 	public static void main(String[] args)
