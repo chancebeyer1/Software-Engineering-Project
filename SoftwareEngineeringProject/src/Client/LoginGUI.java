@@ -117,7 +117,7 @@ public class LoginGUI extends JPanel
 		recoverButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String uName = usernameTextfield.getText();
-				if(uName != null || uName != "")
+				if(uName != null && !uName.equals(""))
 				{
 					String commandString = "recover;" + usernameTextfield.getText();
 					String replyString = gui.client.getNetworkAccess().sendString(commandString, true);	
