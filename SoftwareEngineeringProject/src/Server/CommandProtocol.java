@@ -18,7 +18,8 @@ public class CommandProtocol
 		System.out.println("SERVER receive: " + cmd);
 
 		String[] parse = cmd.split(";");
-		String response = ""; // the response to be sent back to network access.
+		String response = "Invalid"; // the response to be sent back to network access.
+		System.out.println(parse.length);
 		if (parse[0].equals("disconnect"))
 		{
 
@@ -28,7 +29,7 @@ public class CommandProtocol
 			ch.Stop();
 		}
 		// Register New User
-		else if (parse[0].equals("register"))
+		else if (parse[0].equals("register") && parse.length == 5)
 		{
 			String email = parse[1], username = parse[2], password = parse[3], reenterPassword = parse[4];
 			String sysUsername = userDB.getUserName(username);
@@ -56,11 +57,12 @@ public class CommandProtocol
 				System.out.println(response = "success");
 			}
 
-			System.out.println("Successfully Registered New User!");
+			//System.out.println("Successfully Registered New User!");
 		}
 		// User logs in
-		else if (parse[0].equals("login"))
+		else if (parse[0].equals("login") && parse.length == 3)
 		{
+			
 			String username = parse[1];
 			String sysPassword = userDB.getUserPassword(username);
 			boolean validUser = !sysPassword.equals("");
@@ -81,7 +83,7 @@ public class CommandProtocol
 				response = "invalid";
 			}
 		}
-		else if (parse[0].equals("recover"))
+		else if (parse[0].equals("recover") && parse.length == 2)
 		{
 			String username = parse[1];
 			String sysPassword = userDB.getUserPassword(username);
@@ -96,7 +98,7 @@ public class CommandProtocol
 				response = "success";
 			}
 		}
-		else if (parse[0].equals("changePassword"))
+		else if (parse[0].equals("changePassword") && parse.length == 5)
 		{
 			String username = parse[1], currentPassword = parse[2], newPassword = parse[3], reenterPassword = parse[4];
 			String sysPassword = userDB.getUserPassword(username);
@@ -118,7 +120,7 @@ public class CommandProtocol
 				response = "success";
 			}
 		}
-		else if (parse[0].equals("logout"))
+		else if (parse[0].equals("logout") && parse.length == 2)
 		{
 			ch.getServer().removeLoggedInUsers(parse[1]);
 			response = "success";

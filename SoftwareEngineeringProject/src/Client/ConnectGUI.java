@@ -27,7 +27,7 @@ public class ConnectGUI extends JPanel
 	{
 		setBounds(0, 0, 550, 600);
 		this.setLayout(null);
-		
+
 		connectButton = new JButton("Connect");
 		connectButton.setBounds(163, 169, 89, 23);
 		this.add(connectButton);
@@ -35,37 +35,47 @@ public class ConnectGUI extends JPanel
 		ipArea = new JTextField();
 		ipArea.setBounds(174, 61, 203, 23);
 		this.add(ipArea);
-		
+
 		ipLabel = new JLabel("IP address:");
 		ipLabel.setBounds(65, 61, 95, 23);
 		this.add(ipLabel);
-		
-		ipArea.addKeyListener(new KeyAdapter() {
-		      public void keyReleased(KeyEvent e) {
-		    	  if(e.getKeyChar()==KeyEvent.VK_ENTER){
-		    		  connectButton.doClick();
-	                }
-		      }
-		    });
+
+		ipArea.addKeyListener(new KeyAdapter()
+		{
+			public void keyReleased(KeyEvent e)
+			{
+				if (e.getKeyChar() == KeyEvent.VK_ENTER)
+				{
+					connectButton.doClick();
+				}
+			}
+		});
 		connectButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent actionEvent)
 			{
-				//String host = "127.0.0.1"
+				// String host = "127.0.0.1"
 				String host = ipArea.getText();
 				int port = 8000;
 				// -- instantiate a Client object
 				// the constructor will attempt to connect to the server
-				
-				gui.client = new Client(host, port);
+
+				try
+				{
+					gui.client = new Client(host, port);
+				}
+				catch (Exception ex)
+				{
+					ex.printStackTrace();
+				}
+
 				if (gui.client.getNetworkAccess() != null)
 				{
-		            gui.loginPanel();
-		            ipArea.setText("");
+					gui.loginPanel();
+					ipArea.setText("");
 				}
 			}
 		});
 	}
-	
 
 }
