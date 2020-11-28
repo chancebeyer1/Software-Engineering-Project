@@ -29,7 +29,7 @@ public class NetworkAccess {
 	 * @param ip: IP address of the server
 	 * @param port: port number on which the server is listening
 	 */
-	public NetworkAccess (String ip, int port)
+	public NetworkAccess (String ip, int port) throws UnknownHostException
 	{
 		try {
 			// -- construct the peer to peer socket
@@ -42,18 +42,16 @@ public class NetworkAccess {
 			//    there are other stream types (Object stream) that can be used
 			datain = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			dataout = new DataOutputStream(socket.getOutputStream());
-			
-			
-		} 
+
+
+		}
 		catch (UnknownHostException e) {
-			
 			System.out.println("Host " + ip + " at port " + port + " is unavailable.");
-			System.exit(1);
-			
-		} 
+			throw e;
+		}
 		catch (IOException e) {
-			
-			System.out.println(e); //"Unable to create I/O streams."
+
+			e.printStackTrace(); //"Unable to create I/O streams."
 			System.exit(1);
 		}
 		

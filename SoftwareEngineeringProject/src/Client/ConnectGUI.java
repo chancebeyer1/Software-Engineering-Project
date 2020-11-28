@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.net.UnknownHostException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -63,6 +64,11 @@ public class ConnectGUI extends JPanel
 				try
 				{
 					gui.client = new Client(host, port);
+				}
+				catch(UnknownHostException e) { // this was sent up two levels to be addressed.
+					// clear fields. this is a messy way to do it but I don't see another way.
+					ipArea.setText("");
+					return;
 				}
 				catch (Exception ex)
 				{
