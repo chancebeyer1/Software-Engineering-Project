@@ -29,6 +29,9 @@ public class LoggedInGUI extends JPanel
 	private JButton disconnectButton;
 	private JButton btnNewButton;
 
+	private static final String[] COL_NAMES =
+			{"Rank", "Country", "Score", "GDP", "Social support", "Life Expectancy"};
+
 	/**
 	 * Create the frame.
 	 */
@@ -72,10 +75,7 @@ public class LoggedInGUI extends JPanel
 		add(logoutButton);
 
 		// create table with data
-		final JTable table = new JTable(new Object[][]
-		{
-				{ null, null, null, null, null, null }, }, new String[]
-		{ "Rank", "Country", "Score", "GDP", "Social support", "Life Expectancy" });
+		final JTable table = new JTable(new Object[1][6],COL_NAMES);
 
 		JScrollPane pane = new JScrollPane(table);
 		pane.setSize(493, 259);
@@ -107,24 +107,21 @@ public class LoggedInGUI extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				String commandString = "application;";
-				String replyString = gui.client.getNetworkAccess().sendString(commandString, true);
-				String[] row = replyString.split(";");
-
-				String[] columns = new String[]
-				{ "Rank", "Country", "Score", "GDP", "Social support", "Life Expectancy" };
+				String[] row = gui.client
+						.getNetworkAccess()
+						.sendString(commandString,true) // reply string from command
+						.split(";");
 
 				Object[][] data = new Object[row.length][6];
+				// map the split cells to the table.
 				for (int i = 0; i < row.length; i++)
 				{
 					String[] cells = row[i].split(",");
-					for (int j = 0; j < cells.length; j++)
-					{
-						data[i][j] = cells[j];
-					}
+					System.arraycopy(cells,0,data[i],0,cells.length);
 				}
 
-				table.setModel(new DefaultTableModel(data, columns));
-				
+				table.setModel(new DefaultTableModel(data, COL_NAMES));
+
 				table.getColumnModel().getColumn(0).setPreferredWidth(64);
 				table.getColumnModel().getColumn(2).setPreferredWidth(45);
 				table.getColumnModel().getColumn(3).setPreferredWidth(65);
