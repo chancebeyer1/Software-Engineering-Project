@@ -45,10 +45,6 @@ public class NetworkAccess {
 
 
 		}
-		catch (UnknownHostException e) {
-			System.out.println("Host " + ip + " at port " + port + " is unavailable.");
-			throw e;
-		}
 		catch (IOException e) {
 
 			e.printStackTrace(); //"Unable to create I/O streams."
