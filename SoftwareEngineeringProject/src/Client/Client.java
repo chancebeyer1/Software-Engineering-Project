@@ -2,6 +2,7 @@ package Client;
 
 import Common.NetworkAccess;
 
+import java.io.IOException;
 import java.net.UnknownHostException;
 
 public class Client {
@@ -41,7 +42,7 @@ public class Client {
 	 * @param ip: the IP address of the server
 	 * @param port: the port on which the server is listening
 	 */
-	public Client (String ip, int port) throws UnknownHostException
+	public Client (String ip, int port) throws IOException
 	{
 		networkaccess = new NetworkAccess(ip, port);
 	}
@@ -63,7 +64,7 @@ public class Client {
 	 * 
 	 * @param args: command line arguments (unused)
 	 */
-	public static void main(String[] args) throws UnknownHostException {
+	public static void main(String[] args) throws IOException {
 
 		String host = "127.0.0.1";
 		int port = 8000;

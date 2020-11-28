@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class NetworkAccess {
 
@@ -29,28 +28,18 @@ public class NetworkAccess {
 	 * @param ip: IP address of the server
 	 * @param port: port number on which the server is listening
 	 */
-	public NetworkAccess (String ip, int port) throws UnknownHostException
+	public NetworkAccess (String ip, int port) throws IOException
 	{
-		try {
-			// -- construct the peer to peer socket
-			//    check if the server is available and connects if it is,
-			//    if not throw an exception
-			socket = new Socket(ip, port);
+		// -- construct the peer to peer socket
+		//    check if the server is available and connects if it is,
+		//    if not throw an exception
+		socket = new Socket(ip, port);
 			
-			// -- wrap the socket in stream I/O objects
-			//    these are for passing String types over the network
-			//    there are other stream types (Object stream) that can be used
-			datain = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			dataout = new DataOutputStream(socket.getOutputStream());
-
-
-		}
-		catch (IOException e) {
-
-			e.printStackTrace(); //"Unable to create I/O streams."
-			System.exit(1);
-		}
-		
+		// -- wrap the socket in stream I/O objects
+		//    these are for passing String types over the network
+		//    there are other stream types (Object stream) that can be used
+		datain = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		dataout = new DataOutputStream(socket.getOutputStream());
 	}
 
 	/**

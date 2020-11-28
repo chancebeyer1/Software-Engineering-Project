@@ -74,6 +74,7 @@ public class ConnectGUI extends JPanel
 				catch (Exception ex)
 				{
 					ex.printStackTrace();
+					System.exit(1);
 				}
 
 				if (gui.client.getNetworkAccess() != null)
