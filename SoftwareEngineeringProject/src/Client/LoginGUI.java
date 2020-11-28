@@ -122,7 +122,18 @@ public class LoginGUI extends JPanel
 					String commandString = "recover;" + usernameTextfield.getText();
 					String replyString = gui.client.getNetworkAccess().sendString(commandString, true);	
 			    	//Message saying it was sent
+					if(replyString.equals("success"))
+			    	{
+			    		System.out.println("success recieved");
+			    		usernameTextfield.setText("Successfully Sent");
+			    	}
+					else
+					{
+						usernameTextfield.setText("INVALID");
+						passwordField.setText("");
+					}
 				}
+				
 				
 			}
 		});
