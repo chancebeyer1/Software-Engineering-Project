@@ -27,6 +27,7 @@ public class CommandProtocol
 			na.close();
 			ch.getServer().removeID(ch.getID());
 			ch.Stop();
+			return;
 		}
 		// Register New User
 		else if (parse[0].equals("register") && parse.length == 5)
@@ -67,10 +68,13 @@ public class CommandProtocol
 			String sysPassword = userDB.getUserPassword(username);
 			boolean validUser = !sysPassword.equals("");
 			int lockCount = validUser ? Integer.parseInt(userDB.getLockCount(username)) : 0;
-			if (++lockCount == 3)
+			if (++lockCount >= 3)
 			{
 				System.out.println("lockCount == 3");
+				
+				userDB.updateLockCount(username, 3);
 				response = "accountLocked";
+				
 			}
 			else if (sysPassword.equals(parse[2]))
 			{
@@ -132,80 +136,9 @@ public class CommandProtocol
 		}
 		
 		
-//		else if (parse[0].equals("get"))
-//		{
-//			// Retrieve All User Information
-//			if (parse[1].equals("allRows"))
-//			{
-//				na.sendString(userDB.user_getAllInfo() + "\n", false);
-//			}
-//			// Retrieve User Email given a Username
-//			else if (parse[1].equals("email"))
-//			{
-//				String username = parse[2];
-//				na.sendString(userDB.getEmail(username) + "\n", false);
-//				System.out.println("Successfully Retrieved " + username + "'s Email!");
-//			}
-//			// Retrieve Username given a Username
-//			else if (parse[1].equals("username"))
-//			{
-//				String username = parse[2];
-//				na.sendString(userDB.getUserName(username) + "\n", false);
-//				System.out.println("Successfully Retrieved " + username + "'s Username!");
-//			}
-//			// Retrieve User's Password given a Username
-//			else if (parse[1].equals("password"))
-//			{
-//				String username = parse[2];
-//				na.sendString(userDB.getUserPassword(username) + "\n", false);
-//				System.out.println("Successfully retrieved " + username + "'s Password!");
-//			}
-//			// Retrieve User's Lock Count given a Username
-//			else if (parse[1].equals("lockCount"))
-//			{
-//				String username = parse[2];
-//				na.sendString(userDB.getLockCount(username) + "\n", false);
-//				System.out.println("Successfully retrieved " + username + "'s Lock Count!");
-//			}
-//			// Get All Locked Users
-//			else if (parse[1].equals("allLockedUsers"))
-//			{
-//				na.sendString(userDB.getAllLockedUser() + "\n", false);
-//			}
-//			// Get the Total Number of Registered Users on the User Database
-//			else if (parse[1].equals("rowCount"))
-//			{
-//				na.sendString(userDB.getRegisteredUserCount() + "\n", false);
-//			}
-//
-//		}
-//		else if (parse[0].equals("update"))
-//		{
-//			// Update User's Lock Count Value given a User Name & New Lock Count Value
-//			if (parse[1].equals("lockCount"))
-//			{
-//				String username = parse[2];
-//				int newLockCount = Integer.parseInt(parse[3]);
-//				na.sendString(userDB.updateLockCount(username, newLockCount) + "\n", false);
-//				System.out.println("Successfully Changed " + username + "'s lockCount = " + newLockCount);
-//			}
-//			// Update an Existing Password given a User Name & New Password
-//			else if (parse[1].equals("password"))
-//			{
-//				String username = parse[2];
-//				String newPW = parse[3];
-//				na.sendString(userDB.changeUserPassword(username, newPW) + "\n", false);
-//				System.out.println("Successfully Changed " + username + "'s PW to " + newPW + "!");
-//			}
-//
-//		}
-//		else
-//		{
-//			na.sendString(cmd + "\n", false);
-//		}
-
 		// send response back to the network access.
 		na.sendString(response + "\n",false);
+				
 	}
 
 	public static void main(String[] args)

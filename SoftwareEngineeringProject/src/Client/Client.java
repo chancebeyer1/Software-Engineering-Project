@@ -41,7 +41,14 @@ public class Client {
 	 */
 	public Client (String ip, int port)
 	{
-		networkaccess = new NetworkAccess(ip, port);
+		try
+		{
+			networkaccess = new NetworkAccess(ip, port);
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 	
 	

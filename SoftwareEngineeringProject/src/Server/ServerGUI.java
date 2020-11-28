@@ -1,6 +1,7 @@
 package Server;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -135,12 +136,14 @@ public class ServerGUI extends JFrame
 		loggedInUsersLabel.setBounds(166, 344, 132, 17);
 		getContentPane().add(loggedInUsersLabel);
 		
-		JButton serverStart = new JButton("START SERVER");
+		final JButton serverStart = new JButton("START SERVER");
 		serverStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				server = new Server();
             	Thread serverthread = new Thread(server);
             	serverthread.start();
+            	serverStart.setEnabled(false);
+            	serverStart.setBackground(Color.GRAY);
 			}
 		});
 		serverStart.setBounds(25, 47, 162, 60);

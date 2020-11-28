@@ -30,6 +30,7 @@ public class RegisterGUI extends JPanel
 	private JLabel reenterPasswordLabel;
 	private JButton registerButton;
 	private JButton disconnectButton;
+	private JButton backButton;
 
 
 	/**
@@ -118,7 +119,7 @@ public class RegisterGUI extends JPanel
 					else
 					{
 						gui.loginPanel();
-						emailTextfield.setText("");
+						emailTextfield.setText("INVAILD");
 						usernameTextfield.setText("");
 						passwordField.setText("");
 						reenterPasswordField.setText("");
@@ -129,6 +130,17 @@ public class RegisterGUI extends JPanel
 		});
 		registerButton.setBounds(155, 430, 180, 41);
 		this.add(registerButton);
+		
+		backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.loginPanel();
+				emailTextfield.setText("");
+				usernameTextfield.setText("");
+				passwordField.setText("");
+				reenterPasswordField.setText("");
+			}
+		});
 		
 		disconnectButton = new JButton("Disconnect");
 		disconnectButton.addActionListener(new ActionListener() {

@@ -74,7 +74,7 @@ public class GmailSMTP
 	            msg.setSentDate(new Date());
 	                        
 	            // -- set the message text
-	            msg.setText("Here is your new password: " + "'" + password + "'"  + " for your account " + "'" + username + "'");
+	            msg.setText("Here is your old password: " + "'" + password + "'"  + " for your account " + "'" + username + "'");
 	            msg.setHeader("XPriority", "1");
 	            
 	            // -- send the message
