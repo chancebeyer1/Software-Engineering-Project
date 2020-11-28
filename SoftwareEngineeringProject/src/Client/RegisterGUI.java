@@ -125,6 +125,13 @@ public class RegisterGUI extends JPanel
 						reenterPasswordField.setText("");
 					}
 		    	}
+		    	else
+				{
+					emailTextfield.setText("INVAILD");
+					usernameTextfield.setText("");
+					passwordField.setText("");
+					reenterPasswordField.setText("");
+				}
 		    	
 			}
 		});
