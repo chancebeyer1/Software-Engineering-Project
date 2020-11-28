@@ -112,27 +112,20 @@ public class RegisterGUI extends JPanel
 						gui.user = new User(usernameTextfield.getText(),password);
 						gui.loggedInPanel();
 						emailTextfield.setText("");
-						usernameTextfield.setText("");
-						passwordField.setText("");
-						reenterPasswordField.setText("");
 					}
 					else
 					{
 						gui.loginPanel();
 						emailTextfield.setText("INVAILD");
-						usernameTextfield.setText("");
-						passwordField.setText("");
-						reenterPasswordField.setText("");
 					}
 		    	}
 		    	else
 				{
 					emailTextfield.setText("INVAILD");
-					usernameTextfield.setText("");
-					passwordField.setText("");
-					reenterPasswordField.setText("");
 				}
-		    	
+				usernameTextfield.setText("");
+				passwordField.setText("");
+				reenterPasswordField.setText("");
 			}
 		});
 		registerButton.setBounds(173, 430, 180, 41);
