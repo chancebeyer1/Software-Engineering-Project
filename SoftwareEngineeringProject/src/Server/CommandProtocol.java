@@ -37,25 +37,25 @@ public class CommandProtocol
 			int lockCount = 0;
 			if (!password.equals(reenterPassword))
 			{
-				System.out.println(response = "passwordsDoNotMatch");
+				response = "passwordsDoNotMatch";
 			}
 			else if (!sysUsername.equals(""))
 			{
 				response = "userExists";
-				System.out.println(response + " = " + sysUsername);
+				System.out.println(sysUsername);
 			}
 			else if (!RegexValidation.validSimplePassword(password))
 			{
-				System.out.println(response = "passwordInvalid");
+				response = "passwordInvalid";
 			}
 			else if (!RegexValidation.validEmailAddress(email))
 			{
-				System.out.println(response = "emailInvalid");
+				response = "emailInvalid";
 			}
 			else
 			{
 				userDB.registerNewUser(username, password, email, lockCount);
-				System.out.println(response = "success");
+				response = "success";
 			}
 
 			//System.out.println("Successfully Registered New User!");
@@ -71,10 +71,10 @@ public class CommandProtocol
 			if (++lockCount >= 3)
 			{
 				System.out.println("lockCount == 3");
-				
+
 				userDB.updateLockCount(username, 3);
 				response = "accountLocked";
-				
+
 			}
 			else if (sysPassword.equals(parse[2]))
 			{
@@ -135,10 +135,11 @@ public class CommandProtocol
 			response = app;
 		}
 		
-		
+
 		// send response back to the network access.
+		System.out.println(response);
 		na.sendString(response + "\n",false);
-				
+
 	}
 
 	public static void main(String[] args)
