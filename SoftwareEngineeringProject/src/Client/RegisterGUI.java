@@ -128,7 +128,7 @@ public class RegisterGUI extends JPanel
 		    	
 			}
 		});
-		registerButton.setBounds(155, 430, 180, 41);
+		registerButton.setBounds(173, 430, 180, 41);
 		this.add(registerButton);
 		
 		backButton = new JButton("Back");
@@ -141,6 +141,8 @@ public class RegisterGUI extends JPanel
 				reenterPasswordField.setText("");
 			}
 		});
+		backButton.setBounds(67, 496, 155, 23);
+		add(backButton);
 		
 		disconnectButton = new JButton("Disconnect");
 		disconnectButton.addActionListener(new ActionListener() {
@@ -150,7 +152,7 @@ public class RegisterGUI extends JPanel
 		    	gui.connectPanel();
 			}
 		});
-		disconnectButton.setBounds(185, 507, 122, 23);
+		disconnectButton.setBounds(309, 496, 122, 23);
 		this.add(disconnectButton);
 	}
 }
