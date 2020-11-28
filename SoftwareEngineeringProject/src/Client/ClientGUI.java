@@ -3,6 +3,8 @@ package Client;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -31,14 +33,44 @@ public class ClientGUI extends JFrame
 			{
 				try
 				{
-					ClientGUI frame = new ClientGUI();
+					final ClientGUI frame = new ClientGUI();
 					frame.setVisible(true);
+					
+					frame.addWindowListener(new WindowAdapter() {
+						  public void windowClosing(WindowEvent we) {
+							  
+							  String commandString;
+							  if (frame.isLoggedIn())
+							  {
+								  commandString = "logout;" + frame.user.getUsername();
+								  String replyString = frame.client.getNetworkAccess().sendString(commandString, true);
+								  if (replyString.equals("success"))
+								  {
+									  commandString = "disconnect;";
+									  frame.client.getNetworkAccess().sendString(commandString, false);
+								  }
+							  }
+							  else
+							  {
+								  commandString = "disconnect;";
+								  frame.client.getNetworkAccess().sendString(commandString, false);
+							  }
+							  
+							  System.exit(0);
+						  }
+						});
+					
 				} catch (Exception e)
 				{
 					e.printStackTrace();
 				}
 			}
 		});
+	}
+	
+	public boolean isLoggedIn()
+	{
+		return changePasswordGUI.isVisible() || loggedInGUI.isVisible();
 	}
 
 	public void connectPanel()
@@ -48,6 +80,7 @@ public class ClientGUI extends JFrame
 		registerGUI.setVisible(false);
 		changePasswordGUI.setVisible(false);
 		loggedInGUI.setVisible(false);
+		
 	}
 	
 	public void loginPanel()
@@ -93,7 +126,9 @@ public class ClientGUI extends JFrame
 	{
 		this.setTitle("Client ClientGUI");
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 		
 		setBounds(100, 100, 550, 600);
 		
