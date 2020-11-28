@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.net.UnknownHostException;
 
 import javax.swing.BoxLayout;
@@ -65,8 +66,9 @@ public class ConnectGUI extends JPanel
 				{
 					gui.client = new Client(host, port);
 				}
-				catch(UnknownHostException e) { // this was sent up two levels to be addressed.
+				catch(IOException e) { // this was sent up two levels to be addressed.
 					// clear fields.
+					//System.out.println(e.);
 					System.out.println("Host " + host + " at port " + port + " is unavailable.");
 					ipArea.setText("");
 					return;
